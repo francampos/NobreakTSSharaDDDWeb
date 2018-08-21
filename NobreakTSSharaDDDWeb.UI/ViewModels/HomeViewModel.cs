@@ -6,6 +6,9 @@ using System.Linq;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
+using NobreakTSSharaDDDweb.HidRS232;
+using NobreakTSSharaDDDWeb.Domain.Entities;
+using NobreakTSSharaDDDWeb.Domain.Interface.Services;
 
 namespace NobreakTSSharaDDDWeb.UI.ViewModels
 {
