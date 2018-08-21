@@ -23,6 +23,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HidRS232", "HidRS232", "{6A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NobreakTSSharaDDDWeb.HidRS232", "NobreakTSSharaDDDWeb.HidRS232\NobreakTSSharaDDDWeb.HidRS232.csproj", "{2634248D-79F4-4292-98A2-3DB10C08386E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{5C05F367-0C54-4B5F-9BD0-C21E5D9F2476}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Downloads\TSSHARA\Libs\Arction.WPF.Gauges.dll = ..\..\..\Downloads\TSSHARA\Libs\Arction.WPF.Gauges.dll
+		..\..\..\Downloads\TSSHARA\Libs\Arction.WPF.Gauges.xml = ..\..\..\Downloads\TSSHARA\Libs\Arction.WPF.Gauges.xml
+		..\..\..\Downloads\TSSHARA\Libs\MahApps.Metro.dll = ..\..\..\Downloads\TSSHARA\Libs\MahApps.Metro.dll
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
