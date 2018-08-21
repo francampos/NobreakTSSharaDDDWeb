@@ -1,0 +1,182 @@
+﻿@{
+    ViewBag.Title = "Monitoramento";
+}
+
+
+@section Scripts{
+
+    <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
+    <script src="/signalr/hubs"></script>
+    <script src="~/Scripts/raphael-2.1.4.min.js"></script>
+    <script src="~/Scripts/justgage.js"></script>
+
+
+    <script>
+        $(function () {
+
+
+            var tensaoEntradaChart, tensaoSaidaChart, frequenciaChart, bateriaChart, cargaChart, temperaturaChart;
+
+            tensaoEntradaChart = new JustGage({
+                id: "tensao-entrada-chart",
+                value: 0,
+                min: 0,
+                max: 300,
+                titleFontColor: "#000",
+                valueFontColor: "#000",
+                labelFontColor: "000",
+                title: "Tensão Entrada",
+                label: "Volts"
+            });
+
+            tensaoSaidaChart = new JustGage({
+                id: "tensao-saida-chart",
+                value: 0,
+                min: 0,
+                max: 300,
+                titleFontColor: "#000",
+                valueFontColor: "#000",
+                labelFontColor: "000",
+                title: "Tensão Saída",
+                label: "Volts"
+            });
+
+            frequenciaChart = new JustGage({
+                id: "frequencia-chart",
+                value: 0,
+                min: 0,
+                titleFontColor: "#000",
+                valueFontColor: "#000",
+                labelFontColor: "000",
+                max: 100,
+                title: "Frequênica",
+                label: "Hertz"
+            });
+
+            bateriaChart = new JustGage({
+                id: "bateria-chart",
+                value: 0,
+                min: 0,
+                titleFontColor: "#000",
+                valueFontColor: "#000",
+                labelFontColor: "000",
+                max: 100,
+                title: "Bateria",
+                label: "%"
+            });
+
+            cargaChart = new JustGage({
+                id: "carga-chart",
+                value: 0,
+                min: 0,
+                titleFontColor: "#000",
+                valueFontColor: "#000",
+                labelFontColor: "000",
+                max: 100,
+                title: "Carga",
+                label: "?"
+            });
+
+            temperaturaChart = new JustGage({
+                id: "temperatura-chart",
+                value: 0,
+                min: 0,
+                titleFontColor: "#000",
+                valueFontColor: "#000",
+                labelFontColor: "000",
+                max: 150,
+                title: "Temperatura",
+                label: "C°"
+            })
+
+            var monitorHub = $.connection.monitor,
+
+                // Send a maximum of 10 messages per second
+                // (mouse movements trigger a lot of messages)
+                messageFrequency = 10,
+                // Determine how often to send messages in
+                // time to abide by the messageFrequency
+                updateRate = 1000 / messageFrequency;
+
+            monitorHub.client.updateMonitor = function (model) {
+                monitor = model;
+
+                $(".content-header h1 small").html('Serial: ' + monitor.serial);
+
+
+                //console.log(monitor.tensaoEntrada);
+
+                // Gradually move the shape towards the new location (interpolate)
+                // The updateRate is used as the duration because by the time
+                // we get to the next location we want to be at the "last" location
+                // We also clear the animation queue so that we start a new
+                // animation and don't lag behind.
+
+                tensaoEntradaChart.refresh(monitor.tensaoEntrada);
+                tensaoSaidaChart.refresh(monitor.tensaoSaida);
+                frequenciaChart.refresh(monitor.frequencia);
+                bateriaChart.refresh(monitor.bateria)
+                cargaChart.refresh(monitor.carga);
+                temperaturaChart.refresh(monitor.temperatura);
+
+                if (monitor.carga <= 0) {
+                    $("#carga-chart").hide();
+                } else {
+                    $("#carga-chart").show();
+                }
+
+                if (monitor.temperatura <= 0) {
+                    $("#temperatura-chart").hide();
+                } else {
+                    $("#carga-chart").show();
+                }
+
+
+
+                //console.log("VALUE: " + tensaoEntradaChart.val());
+            };
+
+
+            $.connection.hub.logging = false;
+            $.connection.hub.start().done(function () {
+                // Start the client side server update interval
+                //setInterval(updateServerModel, updateRate);
+            });
+
+            $.connection.hub.disconnected(function () {
+                //if ($.connection.hub.lastError){
+                      //console.log("Disconnected. Reason: " +  $.connection.hub.lastError.message);
+                tensaoEntradaChart.refresh(0);
+                tensaoSaidaChart.refresh(0);
+                frequenciaChart.refresh(0);
+                bateriaChart.refresh(0);
+                //}
+            });
+
+
+
+
+            function updateServerModel() {
+                // Only update server if we have a new movement
+
+                monitorHub.server.update(monitor);
+            }
+
+
+
+
+        });
+    </script>
+
+}
+
+<div class="row">
+    <div id="tensao-entrada-chart" class="col-md-4"></div>
+    <div id="tensao-saida-chart" class="col-md-4"></div>
+    <div id="frequencia-chart" class="col-md-4"></div>
+</div>
+<div class="row">
+    <div id="bateria-chart" class="col-md-4"></div>
+    <div id="carga-chart" class="col-md-4"></div>
+    <div id="temperatura-chart" class="col-md-4"></div>
+</div>

@@ -1,0 +1,119 @@
+﻿@model IEnumerable<NobreakTSSharaDDDWeb.UI.Models.NobreakEvent>
+
+@{
+    ViewBag.Title = "Relatório de Eventos";
+}
+
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css" type="text/css" />
+
+<div class=" table-responsive">
+    <table id="table-eventos" class="table">                
+        <thead>
+            <tr>
+                <th>
+                    Serial
+                </th>
+                <th>
+                    Apelido
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EventReasons)
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.InputVoltage)*@
+                    Entrada
+                </th>
+                <th>
+                    Saída
+                    @*@Html.DisplayNameFor(model => model.OutputVoltage)*@
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Frequency)
+                    
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Battery)
+
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Load)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Temperature)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreationData)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            @*@foreach (var item in ViewBag.OnePageOfProducts)
+            {*@
+                <tr>
+                    <td>
+                        @item.Nobreak.Serial
+                    </td>
+                    <td>
+                        @item.Nobreak.Label
+                    </td>
+                    <td>
+                        @item.EventReasons
+                    </td>
+                    <td>
+                        @item.InputVoltage
+                    </td>
+                    <td>
+                        @item.OutputVoltage
+                    </td>
+                    <td>
+                        @item.Frequency
+                        
+                    </td>
+                    <td>
+                        @item.Battery
+                    </td>
+                    <td>
+                        @item.Load
+                    </td>
+                    <td>
+                        @item.Temperature
+                    </td>
+                    <td>
+                        @item.CreationData
+                    </td>
+                    <td>
+                        @*@Html.ActionLink(" ", "Edit", new { id=item.ID }, new {@class = "glyphicon glyphicon-pencil btn-xs btn-primary" })*@
+                        @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "glyphicon glyphicon-eye-open btn-xs btn-primary" })
+                        @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "glyphicon glyphicon-remove btn-xs btn-danger" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@*@Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Index", new { page }))*@
+
+@*<p>
+        @Html.ActionLink("Adicionar evento", "Create")
+    </p>*@
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#table-eventos').DataTable({
+                "language": {
+                    "lengthMenu": "Mostrando _MENU_ registros por página",
+                    "zeroRecords": "Nenhum registro encontrado",
+                    "info": "Mostrando página _PAGE_ de _PAGES_",
+                    "infoEmpty": "Nenhum registro",
+                    "infoFiltered": "(filtrando um tal de _MAX_ registros)"
+                }});
+        });
+    </script>
+}

@@ -1,0 +1,53 @@
+﻿@model NobreakTSSharaDDDWeb.UI.Models.RegisterViewModel
+@{
+    Layout = "~/Views/Shared/_BasicLayout.cshtml";
+    ViewBag.Title = "Registre-se";
+}
+
+<p class="login-box-msg">Criar uma nova conta</p>
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "", role = "form" }))
+            {
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+    <div class="form-group has-feedback">
+        @Html.TextBoxFor(m => m.Nome, new { @class = "form-control", @placeholder = "Nome" })
+    </div>
+
+    <div class="form-group has-feedback">
+        @Html.TextBoxFor(m => m.Sobrenome, new { @class = "form-control", @placeholder = "Sobrenome" })
+    </div>
+
+    <div class="form-group has-feedback">
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email" })
+    </div>
+
+    <div class="form-group has-feedback">
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Senha" })
+    </div>
+    <div class="form-group has-feedback">
+        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "Confimação de senha" })
+    </div>
+
+    <div class="row">
+        <div class="col-xs-8">
+            <div class="checkbox icheck">
+                <label>
+                    <input type="checkbox"> Eu aceito os <a href="#">termos</a>
+                </label>
+            </div>
+        </div>
+        <!-- /.col -->
+        <div class="col-xs-4">
+            <button type="submit" class="btn btn-primary btn-block btn-flat">Registrar</button>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                @Html.ActionLink("Já sou registrado", "Login")
+            </div>
+        </div>
+        <!-- /.col -->
+    </div>
+}

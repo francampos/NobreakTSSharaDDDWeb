@@ -1,0 +1,32 @@
+﻿@model NobreakTSSharaDDDWeb.UI.Models.Nobreak
+@{
+    ViewBag.Title = "Adicionar Nobreak a Conta";
+    
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Serial">Serial</label>
+            <div class="col-md-10">
+                <input name="serialNobreak" class="form-control text-box single-line" />
+                <span class="field-validation-valid text-danger" data-valmsg-for="Serial" data-valmsg-replace="true"></span>
+                @Html.ValidationMessageFor(model => model.Serial, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Salvar" class="btn btn-primary pull-right" />
+                @Html.ActionLink("Meus Nobreaks", "Index")
+                @*@Html.ActionLink(linkText: " Meus Nobreaks", actionName: "Index", routeValues: null,   htmlAttributes: new { @class = "btn btn-default pull-right" })*@
+            </div>
+        </div>
+    </div>
+}
+

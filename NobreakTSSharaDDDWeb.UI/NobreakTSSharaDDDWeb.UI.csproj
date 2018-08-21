@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Application\NobreakTSSharaDDDWeb.Application.csproj" />
+    <ProjectReference Include="..\Infra\NobreakTSSharaDDDWeb.Infra.csproj" />
+    <ProjectReference Include="..\NobreakTSSharaDDDWeb.HidRS232\NobreakTSSharaDDDWeb.HidRS232.csproj" />
+    <ProjectReference Include="..\NobreakTSSharaDDDWeb\NobreakTSSharaDDDWeb.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

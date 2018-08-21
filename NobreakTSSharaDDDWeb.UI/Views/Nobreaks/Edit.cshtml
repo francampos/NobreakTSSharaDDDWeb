@@ -1,0 +1,64 @@
+﻿@model NobreakTSSharaDDDWeb.UI.Models.Nobreak
+
+@{
+    ViewBag.Title = "Editar Nobreak";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Serial, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.Serial, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })*@
+                @*@Html.TextBox("Serial", new { @class = "form-control", @readonly = "readonly" })*@
+                <input readonly class="form-control text-box single-line" data-val="true" data-val-length="O campo Serial deve ser uma cadeia de caracteres com um comprimento máximo de 50." data-val-length-max="50" data-val-required="O campo Serial é obrigatório." id="Serial" name="Serial" type="text" value="@Model.Serial">
+
+                @Html.ValidationMessageFor(model => model.Serial, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Label, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Label, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Label, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CompanyName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UpsModel, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UpsModel, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UpsModel, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Version, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Version, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Version, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Salvar" class="btn btn-primary pull-right" />
+                @Html.ActionLink("Meus Nobreaks", "Index")
+                @*@Html.ActionLink(linkText: " Meus Nobreaks", actionName: "Index", routeValues: null,   htmlAttributes: new { @class = "btn btn-default pull-right" })*@
+            </div>
+        </div>
+    </div>
+}

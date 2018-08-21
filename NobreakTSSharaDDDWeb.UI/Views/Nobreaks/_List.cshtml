@@ -1,0 +1,54 @@
+﻿@using NobreakTSSharaDDDWeb.UI.Helpers
+@model IEnumerable<NobreakTSSharaDDDWeb.UI.Models.Nobreak>
+
+<table class="table">
+
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Label)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Serial)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompanyName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpsModel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Version)
+        </th>
+        <th>
+            @*@Html.NoEncodeActionLink("<span class='glyphicon glyphicon-plus'></span>", "Add", "AddToAccount", "Nobreaks", htmlAttributes: new { data_modal = "", @class = "btn btn-primary pull-right" })z
+            <button id="add-nobreak" type="button" class="btn btn-primary btn-xs glyphicon glyphicon-plus"><span class=''></span></button>*@
+        </th>
+
+    </tr>
+    @foreach (var item in Model)
+            {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Label)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Serial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpsModel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Version)
+            </td>
+            <td>
+                @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "glyphicon glyphicon-pencil btn-xs btn-primary" })
+                @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "glyphicon glyphicon-eye-open btn-xs btn-warning" })
+                @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "glyphicon glyphicon-remove btn-xs btn-danger" })
+            </td>
+        </tr>
+    }
+</table>
+
