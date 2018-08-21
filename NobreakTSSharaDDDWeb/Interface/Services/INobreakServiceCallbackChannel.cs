@@ -1,4 +1,6 @@
-﻿namespace NobreakTSSharaDDDWeb.Domain.Interface.Services
+﻿using NobreakTSSharaDDDWeb.Domain.Entities;
+
+namespace NobreakTSSharaDDDWeb.Domain.Interface.Services
 {
     [ServiceContract]
     public interface INobreakServiceCallbackChannel

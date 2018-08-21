@@ -95,7 +95,7 @@ namespace NobreakTSSharaDDDweb.HidRS232
                 
                 return info;
             }
-            catch (NobreakNotConnectedException ex)
+            catch (NobreakNotConnectedException)
             {
                 return new UpsData() { Success = false };
             }

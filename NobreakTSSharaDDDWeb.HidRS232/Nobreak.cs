@@ -143,7 +143,7 @@ namespace NobreakTSSharaDDDweb.HidRS232
 
                 return info;
             }
-            catch (NobreakNotConnectedException ex)
+            catch (NobreakNotConnectedException)
             {
                 return new UpsData() { Success = false };
             }
@@ -172,7 +172,7 @@ namespace NobreakTSSharaDDDweb.HidRS232
             {
                 WriteAndReadFromUPS("Q\r");
             }
-            catch (NobreakNotConnectedException ex)
+            catch (NobreakNotConnectedException)
             {
                 Debug.WriteLine("Nobreak nao conectado para alternar beep");
             }
