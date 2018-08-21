@@ -1,15 +1,12 @@
-﻿using Newtonsoft.Json.Linq;
-using NobreakTSSharaDDDWeb.UI.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Diagnostics;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using System.Web.Http.Description;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using NobreakTSSharaDDDWeb.UI.Models;
+using NobreakTSSharaDDDWeb.Domain.Enuns;
 
 
 namespace NobreakTSSharaDDDWeb.UI.Controllers.Api
